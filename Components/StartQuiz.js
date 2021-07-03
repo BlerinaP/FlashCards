@@ -5,9 +5,6 @@ let width = Dimensions.get('window').width;
 import {clearLocalNotification, setLocalNotification} from "../Notification/noty";
 
 class  StartQuiz extends React.Component{
-    componentDidMount() {
-        clearLocalNotification().then(setLocalNotification);
-    }
     state={
         show: 'question',
         correct: 0,
@@ -47,6 +44,9 @@ class  StartQuiz extends React.Component{
                 }
             }
         )
+        if(index === this.state.questions.length - 1){
+            clearLocalNotification().then(setLocalNotification).catch(err => console.log(err))
+        }
     };
     render(){
         const {questions, show, correct} = this.state;
@@ -78,6 +78,12 @@ class  StartQuiz extends React.Component{
                         navigation.navigate('Home', {screen: 'Home'})
                     }}>
                         <Text style={{color: 'white'}}>Home</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.restart} onPress={() => {
+                        this.reset()
+                        navigation.goBack()
+                    }}>
+                        <Text style={{color: "white"}}>Back to Deck</Text>
                     </TouchableOpacity>
                 </View>
             )
