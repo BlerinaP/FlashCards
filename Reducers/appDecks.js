@@ -1,4 +1,4 @@
-import {GETDECKS, ADD_CARD, ADD_DECK} from "../Actions";
+import {GETDECKS, ADD_CARD, ADD_DECK, DELETE_DECK} from "../Actions";
 
 function Decks_Reducer (state={}, action) {
     switch(action.type){
@@ -25,6 +25,10 @@ function Decks_Reducer (state={}, action) {
                     questions: [...state[id].questions].concat(card)
                 }
             };
+        case DELETE_DECK:
+            const deckId = action.id
+            const { [ deckId ]: value, ...decksRemained} = state;
+            return decksRemained
         default:
             return state
     }

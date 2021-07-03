@@ -45,7 +45,7 @@ export default connect(null, {ADD_DECK_APP})(AddDeck)
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#d3d3d3',
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -53,7 +53,9 @@ const styles = StyleSheet.create({
         width: "100%",
         height: 45,
         borderRadius: 5,
-        paddingLeft: "15px"
+        borderColor: 'gray',
+        backgroundColor: '#fff',
+        padding: 12
     },
     enterText: {
         color: 'tomato',

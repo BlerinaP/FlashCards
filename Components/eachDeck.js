@@ -1,27 +1,28 @@
 import React from 'react';
-import {View, Text, StyleSheet} from "react-native-web";
+import {View, Text, StyleSheet} from "react-native";
 
 
 const EachDeck = (props) => {
-    const {deck} = props;
+    const {deck} = props
+    if (deck === undefined) {
+        return <View><Text>Loading</Text></View>
+    }
     return(
-        <View style={styles.DeckTexts}>
+        <View>
             <Text style={styles.DeckTitle}>{deck.title}</Text>
-            <Text style={styles.DeckDescp}>{deck.questions.length} cards</Text>
+            <Text style={styles.DeckDescp}>{deck.questions.length}cards</Text>
         </View>
     )
-};
+}
 const styles = StyleSheet.create({
     DeckTitle:{
         fontSize: 25,
         color: "black",
-        fontWeight: 600,
         marginBottom: 10
     },
     DeckDescp:{
         fontSize: 15,
         color: "black",
-        fontWeight: 300,
         textAlign: "center"
     }
 });

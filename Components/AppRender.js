@@ -38,7 +38,7 @@ function StatusBarCard({ backgroundColor, ...props }) {
 export default function AppRender() {
     return (
         <View style={styles.mainRoute}>
-            <StatusBarCard  backgroundColor="gray" barStyle="light-content"/>
+            <StatusBarCard  backgroundColor="darkgray" barStyle="light-content"/>
             <NavigationContainer style={styles.container}>
                 <Tab.Navigator screenOptions={({route}) => ({
                     tabBarIcon: () => {
@@ -69,6 +69,7 @@ export default function AppRender() {
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',

@@ -30,9 +30,10 @@ class AddCard extends React.Component{
         return(
             <View style={styles.container}>
                 <View style={{width: "80%"}}>
-                    <Text style={styles.enterText}>Enter Your Card Title</Text>
+                    <Text style={styles.enterText}>Enter Your Card </Text>
                 </View>
                 <View style={{width: "80%"}}>
+                    <Text>Question</Text>
                     <TextInput
                         style={styles.input}
                         value={this.state.cardQuestion}
@@ -40,6 +41,7 @@ class AddCard extends React.Component{
                     />
                 </View>
                 <View style={{width: "80%", marginTop: 10}}>
+                    <Text>Answer</Text>
                     <TextInput
                         style={styles.input}
                         value={this.state.cardAnswer}
@@ -66,7 +68,7 @@ export default connect(mapStateToProps, {addCardDeck})(AddCard)
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#d3d3d3',
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -74,7 +76,9 @@ const styles = StyleSheet.create({
         width: "100%",
         height: 45,
         borderRadius: 5,
-        paddingLeft: "15px"
+        borderColor: 'gray',
+        backgroundColor: '#fff',
+        padding: 12
     },
     enterText: {
         color: 'tomato',

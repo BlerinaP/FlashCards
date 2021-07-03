@@ -1,15 +1,26 @@
 import React,{Component} from "react";
 import {View, Text, TouchableOpacity, StyleSheet} from "react-native"
 import {connect }from "react-redux";
+import {deleteDeck} from "../Actions";
+import {delete_deck} from "../helpers/api";
 
 class DeckDetails extends React.Component{
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        return nextProps.deck !== undefined
+    }
+
+    handleDeleteDeck = (id) => {
+        this.props.deleteDeck(id);
+        delete_deck(id);
+        this.props.navigation.goBack()
+    };
     render(){
        let {deck} = this.props;
         let {navigation} = this.props;
         return(
             <View style={styles.container}>
                 <View style={styles.AddDeckTexts}>
-                    <Text style={styles.AddDeckTitle}>{deck.title}</Text>
+                    <Text style={styles.AddDeckTitle}>{deck.title === undefined ? 'deck title goes here' : deck.title}</Text>
                     <Text style={styles.AddDeckDescp}>{deck.questions.length} cards</Text>
                 </View>
                 <TouchableOpacity style={styles.AddCardBtn} onPress={() => navigation.navigate('AddCard', {screen: 'AddCard', title: deck.title })}>
@@ -17,6 +28,9 @@ class DeckDetails extends React.Component{
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.StartQuiz} onPress={() => navigation.navigate('StartQuiz', {screen: 'StartQuiz', title: deck.title})}>
                     <Text style={styles.StartQuizText}>Start Quiz</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() =>  this.handleDeleteDeck(deck.title)}>
+                    <Text style={styles.deleteDeck}> Delete Deck</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -29,7 +43,7 @@ const mapStateToProps = (state, {route}) => {
         deck
     }
 }
-export default connect(mapStateToProps)(DeckDetails)
+export default connect(mapStateToProps,{deleteDeck})(DeckDetails)
 const styles = StyleSheet.create({
     AddCardBtn: {
         backgroundColor: "#cbcbcb",
@@ -44,7 +58,6 @@ const styles = StyleSheet.create({
     AddCardText: {
         color: "#2b2b2b",
         textAlign: "center",
-        fontWeight: "500",
     },
     StartQuiz: {
         backgroundColor: "#2b2b2b",
@@ -58,7 +71,6 @@ const styles = StyleSheet.create({
     StartQuizText: {
         color: "#fff",
         textAlign: "center",
-        fontWeight: "500",
     },
     container: {
         flex: 1,
@@ -72,13 +84,15 @@ const styles = StyleSheet.create({
     AddDeckTitle:{
         fontSize: 25,
         color: "black",
-        fontWeight: 600,
         marginBottom: 10
     },
     AddDeckDescp:{
         fontSize: 15,
         color: "gray",
-        fontWeight: 300,
         textAlign: "center"
+    },
+    deleteDeck:{
+        color: 'red',
+        marginTop: 10
     }
 });

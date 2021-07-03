@@ -1,8 +1,7 @@
 import React from "react"
-import {StyleSheet, View, Text, ScrollView} from "react-native";
+import {StyleSheet, View, Text, ScrollView, TouchableOpacity} from "react-native";
 import {connect} from "react-redux";
 import {getDecks} from "../Actions";
-import {TouchableOpacity} from "react-native-web";
 import EachDeck from "./eachDeck";
 
 class Home extends React.Component{
@@ -16,14 +15,16 @@ class Home extends React.Component{
             return <View><Text>Loading...</Text></View>
         }
         return(
-            <ScrollView style={styles.container}>
-                {Object.values(decks.GETDECKS).map(deck => {
-                    return(
-                        <TouchableOpacity key={deck.title} style={styles.buttonDecks}  onPress={() => navigation.navigate('DeckDetails', {title: deck.title, cards: deck.questions})}>
-                            <EachDeck deck={deck}/>
-                        </TouchableOpacity>
-                    )
-                })}
+            <ScrollView>
+                <View style={styles.container}>
+                    {Object.values(decks.GETDECKS).map(deck => {
+                        return(
+                            <TouchableOpacity key={deck.title} style={styles.buttonDecks}  onPress={() => navigation.navigate('DeckDetails', {title: deck.title, cards: deck.questions})}>
+                                <EachDeck deck={deck}/>
+                            </TouchableOpacity>
+                        )
+                    })}
+                </View>
             </ScrollView>
         )
     }
@@ -41,10 +42,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        paddingTop: 16,
-        paddingLeft: 16,
-        paddingRight: 16,
-        paddingBottom: 16,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 16
     },
     buttonDecks:{
         backgroundColor: 'tomato',

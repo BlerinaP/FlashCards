@@ -78,3 +78,15 @@ export const addCard = async (title, card) => {
         console.log(err, "from adding card to deck")
     }
 }
+
+export const delete_deck = async(id)  => {
+    try{
+        const res = await AsyncStorage.getItem(DECKS_KEY);
+        const dataFromRes = JSON.parse(res);
+        dataFromRes[id] = undefined;
+        delete dataFromRes[id]
+        AsyncStorage.setItem(DECKS_KEY, JSON.stringify(dataFromRes))
+    }catch(err){
+        console.log("From Delete", err)
+    }
+}

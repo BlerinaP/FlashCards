@@ -1,6 +1,7 @@
 export const GETDECKS = "GETDECKS";
 export const ADD_CARD = "ADD_CARD";
 export const ADD_DECK = "ADD_DECK";
+export const DELETE_DECK = "DELETE_DECK"
 
 import {getAllDecks, saveDeck} from "../helpers/api";
 
@@ -31,5 +32,12 @@ export function addCardDeck(id, card) {
         type: ADD_CARD,
         id,
         card
+    }
+}
+
+export function deleteDeck(id){
+    return{
+        type: DELETE_DECK,
+        id
     }
 }

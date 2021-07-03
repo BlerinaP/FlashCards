@@ -85,6 +85,7 @@ class  StartQuiz extends React.Component{
         return(
             <ScrollView
                 style={styles.container}
+                contenctContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center' }}
                 pagingEnabled={true}
                 horizontal={true}
                 onScroll={this.scrolling}
@@ -126,18 +127,14 @@ const styles = StyleSheet.create({
         paddingRight: 16,
         paddingBottom: 16,
         backgroundColor: 'white',
-        width: width
+        width: width,
     },
     main:{
         flex: 1,
-        paddingTop: 16,
-        paddingLeft: 16,
-        paddingRight: 16,
-        paddingBottom: 16,
         backgroundColor: 'white',
         width: width,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     done: {
         backgroundColor: 'green',
@@ -171,7 +168,6 @@ const styles = StyleSheet.create({
         color: "black",
         fontSize: 15,
         marginBottom: 10,
-        fontWeight: 300,
         width: "80%",
     },
     noCard:{
