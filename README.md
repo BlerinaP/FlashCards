@@ -8,7 +8,7 @@ This App is used to Create some Decks and Cards. Each Deck contains a number of 
 3. npm install
 
 Run npm run web - to see it in webview
-npm start.
+
 
 After Starting the app you see a QR code which have to be scanned using "expo go" or the ios camera app.
 
